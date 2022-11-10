@@ -7,7 +7,8 @@ describe('colors routes', () => {
   beforeEach(() => {
     return setup(pool);
   });
-  it.only('GET /colors should return a list of colors', async () => {
+
+  it('GET /colors should return a list of colors', async () => {
     const res = await request(app).get('/colors');
     expect(res.status).toEqual(200);
     expect(res.body[0]).toEqual({
@@ -16,6 +17,17 @@ describe('colors routes', () => {
       hexColor: '#800000',
     });
   });
+
+  it.only('GET /colors/:id should return one color', async () => {
+    const res = await request(app).get('/colors/3');
+    expect(res.status).toEqual(200);
+    expect(res.body).toEqual({
+      id: '3',
+      colorName: 'Yellow',
+      hexColor: '#ffff00',
+    });
+  });
+
   it('POST /colors should create a new color', async () => {
     const newColor = {
       color_name: 'Crimson',
