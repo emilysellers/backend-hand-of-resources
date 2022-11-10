@@ -11,7 +11,7 @@ describe('colors routes', () => {
     const res = await request(app).get('/colors');
     expect(res.status).toEqual(200);
     expect(res.body[0]).toEqual({
-      id: 1,
+      id: '1',
       colorName: 'Maroon',
       hexColor: '#800000',
     });
