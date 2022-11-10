@@ -14,9 +14,11 @@ describe('colors routes', () => {
     };
     const res = await request(app).post('/colors').send(newColor);
     expect(res.status).toEqual(200);
+    // (contorller turns SQL object into JS object here)
     expect(res.body).toEqual({
       id: expect.any(String),
-      ...newSoda,
+      colorName: expect.any(String),
+      hexColor: expect.any(String),
     });
   });
   afterAll(() => {
