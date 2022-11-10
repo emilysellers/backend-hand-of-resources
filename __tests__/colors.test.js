@@ -18,7 +18,7 @@ describe('colors routes', () => {
     });
   });
 
-  it.only('GET /colors/:id should return one color', async () => {
+  it('GET /colors/:id should return one color', async () => {
     const res = await request(app).get('/colors/3');
     expect(res.status).toEqual(200);
     expect(res.body).toEqual({
@@ -35,13 +35,26 @@ describe('colors routes', () => {
     };
     const res = await request(app).post('/colors').send(newColor);
     expect(res.status).toEqual(200);
-    // (contorller turns SQL object into JS object here)
+    // (controller turns SQL object into JS object here)
     expect(res.body).toEqual({
       id: expect.any(String),
       colorName: expect.any(String),
       hexColor: expect.any(String),
     });
   });
+
+  it.only('PUT /colors/:id should update one existing color', async () => {
+    const resp = await request(app)
+      .put('/colors/9')
+      .send({ color_name: 'amber' });
+    expect(resp.status).toEqual(200);
+    expect(resp.body).toEqual({
+      id: '9',
+      colorName: 'amber',
+      hexColor: '#000000',
+    });
+  });
+
   afterAll(() => {
     pool.end();
   });
