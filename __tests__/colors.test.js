@@ -43,7 +43,15 @@ describe('colors routes', () => {
     });
   });
 
-  it.only('PUT /colors/:id should update one existing color', async () => {
+  it.only('DELETE /colors/:id should delete one existing color', async () => {
+    const resp = await request(app).delete('/colors/2');
+    expect(resp.status).toBe(200);
+
+    const colorResp = await request(app).get('/colors/2');
+    expect(colorResp.status).toBe(404);
+  });
+
+  it('PUT /colors/:id should update one existing color', async () => {
     const resp = await request(app)
       .put('/colors/9')
       .send({ colorName: 'amber' });
