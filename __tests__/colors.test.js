@@ -46,13 +46,14 @@ describe('colors routes', () => {
   it.only('PUT /colors/:id should update one existing color', async () => {
     const resp = await request(app)
       .put('/colors/9')
-      .send({ color_name: 'amber' });
+      .send({ colorName: 'amber' });
     expect(resp.status).toEqual(200);
     expect(resp.body).toEqual({
       id: '9',
       colorName: 'amber',
       hexColor: '#000000',
     });
+    // expect(resp.body.colorName).toBe('amber');
   });
 
   afterAll(() => {
