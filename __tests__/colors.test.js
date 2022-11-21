@@ -43,7 +43,7 @@ describe('colors routes', () => {
     });
   });
 
-  it.only('DELETE /colors/:id should delete one existing color', async () => {
+  it('DELETE /colors/:id should delete one existing color', async () => {
     const resp = await request(app).delete('/colors/2');
     expect(resp.status).toBe(200);
 
