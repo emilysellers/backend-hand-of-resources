@@ -19,7 +19,7 @@ describe('sharks routes', () => {
     });
   });
 
-  it.only('GET /sharks/:id should return one shark', async () => {
+  it('GET /sharks/:id should return one shark', async () => {
     const res = await request(app).get('/sharks/1');
     expect(res.status).toEqual(200);
     expect(res.body).toEqual({
@@ -43,6 +43,19 @@ describe('sharks routes', () => {
       commonName: 'Horn shark',
       distinctiveFeature: 'ridges along the eyes',
       lengthFt: '4',
+    });
+  });
+
+  it('PUT /sharks/:id should update one existing shark', async () => {
+    const resp = await request(app)
+      .put('/sharks/3')
+      .send({ commonName: 'Friendly shark' });
+    expect(resp.status).toEqual(200);
+    expect(resp.body).toEqual({
+      id: '3',
+      commonName: 'Friendly shark',
+      distinctiveFeature: 'flattened body and a broad, rounded head',
+      lengthFt: '10',
     });
   });
 
