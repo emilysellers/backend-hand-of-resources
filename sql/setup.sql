@@ -2,6 +2,7 @@
 -- The SQL in this file will be executed when you run `npm run setup-db`
 DROP TABLE IF EXISTS colors;
 DROP TABLE IF EXISTS sharks;
+DROP TABLE IF EXISTS cities;
 
 CREATE TABLE colors (
 	id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -13,6 +14,12 @@ CREATE TABLE sharks (
 	common_name VARCHAR(50),
 	distinctive_feature VARCHAR(50),
 	length_ft BIGINT
+);
+
+CREATE TABLE cities (
+	id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+	city_name VARCHAR(50),
+	country VARCHAR(50)
 );
 
 INSERT INTO colors (
@@ -42,4 +49,16 @@ VALUES
 ('Nurse shark', 'flattened body and a broad, rounded head', 10),
 ('Pyjama shark', 'stripes', 3.5),
 ('Silky shark', 'rounded snout, large eyes, and small jaws', 7.5)
+;
+
+INSERT INTO cities (
+	city_name,
+	country
+)
+VALUES
+('Seattle', 'USA'),
+('Buenos Aires', 'Argentina'),
+('Saigon', 'Vietnam'),
+('Uluwatu', 'Indonesia'),
+('Alcoy', 'Spain')
 ;
