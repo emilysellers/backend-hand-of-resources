@@ -22,6 +22,18 @@ describe('cities routes', () => {
     });
   });
 
+  it('PUT /cities/:id should update one existing city', async () => {
+    const res = await request(app)
+      .put('/cities/1')
+      .send({ cityName: 'Portland' });
+    expect(res.status).toEqual(200);
+    expect(res.body).toEqual({
+      id: '1',
+      cityName: 'Portland',
+      country: 'USA',
+    });
+  });
+
   it('GET /cities/:id should return one existing city', async () => {
     const res = await request(app).get('/cities/5');
     expect(res.status).toEqual(200);
