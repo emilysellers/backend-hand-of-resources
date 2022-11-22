@@ -8,6 +8,17 @@ describe('sharks routes', () => {
     return setup(pool);
   });
 
+  it.only('GET /sharks should list all sharks', async () => {
+    const res = await request(app).get('/sharks');
+    expect(res.status).toEqual(200);
+    expect(res.body[0]).toEqual({
+      id: '1',
+      commonName: 'Goblin shark',
+      distinctiveFeature: 'catapulting snout',
+      lengthFt: '13',
+    });
+  });
+
   it('POST /sharks should create a new shark', async () => {
     const newShark = {
       common_name: 'Horn shark',
@@ -17,16 +28,13 @@ describe('sharks routes', () => {
     const res = await request(app).post('/sharks').send(newShark);
     expect(res.status).toEqual(200);
     expect(res.body).toEqual({
-      id: expect.any(String),
-      commonName: expect.any(String),
-      distinctiveFeature: expect.any(String),
-      lengthFt: expect.any(String),
-      // id: '6',
-      // commonName: 'Horn shark',
-      // distinctiveFeature: 'ridges along the eyes',
-      // lengthFt: '4',
+      id: '6',
+      commonName: 'Horn shark',
+      distinctiveFeature: 'ridges along the eyes',
+      lengthFt: '4',
     });
   });
+
   afterAll(() => {
     pool.end();
   });
