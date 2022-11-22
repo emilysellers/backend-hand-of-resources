@@ -8,10 +8,21 @@ describe('sharks routes', () => {
     return setup(pool);
   });
 
-  it.only('GET /sharks should list all sharks', async () => {
+  it('GET /sharks should list all sharks', async () => {
     const res = await request(app).get('/sharks');
     expect(res.status).toEqual(200);
     expect(res.body[0]).toEqual({
+      id: '1',
+      commonName: 'Goblin shark',
+      distinctiveFeature: 'catapulting snout',
+      lengthFt: '13',
+    });
+  });
+
+  it.only('GET /sharks/:id should return one shark', async () => {
+    const res = await request(app).get('/sharks/1');
+    expect(res.status).toEqual(200);
+    expect(res.body).toEqual({
       id: '1',
       commonName: 'Goblin shark',
       distinctiveFeature: 'catapulting snout',
