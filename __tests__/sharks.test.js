@@ -46,6 +46,13 @@ describe('sharks routes', () => {
     });
   });
 
+  it.only('DELETE /sharks/:id should delete one existing shark', async () => {
+    const resp = await request(app).delete('/sharks/2');
+    expect(resp.status).toEqual(200);
+    const sharkResp = await request(app).get('/sharks/2');
+    expect(sharkResp.status).toBe(404);
+  });
+
   it('PUT /sharks/:id should update one existing shark', async () => {
     const resp = await request(app)
       .put('/sharks/3')
