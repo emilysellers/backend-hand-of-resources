@@ -34,6 +34,13 @@ describe('cities routes', () => {
     });
   });
 
+  it('DELETE /cities/:id should delete one existing city', async () => {
+    const res = await request(app).delete('/cities/4');
+    expect(res.status).toEqual(200);
+    const newRes = await request(app).get('/cities/4');
+    expect(newRes.status).toEqual(404);
+  });
+
   it('GET /cities/:id should return one existing city', async () => {
     const res = await request(app).get('/cities/5');
     expect(res.status).toEqual(200);
