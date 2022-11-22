@@ -22,7 +22,17 @@ describe('cities routes', () => {
     });
   });
 
-  it('/GET should return all cities', async () => {
+  it('GET /cities/:id should return one existing city', async () => {
+    const res = await request(app).get('/cities/5');
+    expect(res.status).toEqual(200);
+    expect(res.body).toEqual({
+      id: '5',
+      cityName: 'Alcoy',
+      country: 'Spain',
+    });
+  });
+
+  it('GET /cities should return all cities', async () => {
     const res = await request(app).get('/cities');
     expect(res.status).toEqual(200);
     expect(res.body[0]).toEqual({
