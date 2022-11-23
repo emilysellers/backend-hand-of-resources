@@ -25,6 +25,17 @@ describe('parks routes', () => {
     });
   });
 
+  it('GET /parks/:id should return one park', async () => {
+    const resp = await request(app).get('/parks/4');
+    expect(resp.status).toEqual(200);
+    expect(resp.body).toEqual({
+      id: '4',
+      name: 'Grand Staircase-Escalante',
+      state: 'Utah',
+      nationalPark: true,
+    });
+  });
+
   it('GET /parks should return all parks', async () => {
     const resp = await request(app).get('/parks');
     expect(resp.status).toEqual(200);
