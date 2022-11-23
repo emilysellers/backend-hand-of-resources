@@ -41,4 +41,14 @@ describe('pets routes', () => {
       type: 'terrier',
     });
   });
+
+  it('PUT /pets/:id should update one existing pet', async () => {
+    const resp = await request(app).put('/pets/4').send({ name: 'Dragon' });
+    expect(resp.status).toEqual(200);
+    expect(resp.body).toEqual({
+      id: '4',
+      name: 'Dragon',
+      type: 'hamster',
+    });
+  });
 });
