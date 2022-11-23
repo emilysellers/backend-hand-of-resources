@@ -3,6 +3,7 @@
 DROP TABLE IF EXISTS colors;
 DROP TABLE IF EXISTS sharks;
 DROP TABLE IF EXISTS cities;
+DROP TABLE IF EXISTS pets;
 
 CREATE TABLE colors (
 	id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -20,6 +21,12 @@ CREATE TABLE cities (
 	id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
 	city_name VARCHAR(50),
 	country VARCHAR(50)
+);
+
+CREATE TABLE pets (
+	id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+	name VARCHAR,
+	type VARCHAR
 );
 
 INSERT INTO colors (
@@ -61,4 +68,16 @@ VALUES
 ('Saigon', 'Vietnam'),
 ('Uluwatu', 'Indonesia'),
 ('Alcoy', 'Spain')
+;
+
+INSERT INTO pets (
+	name, 
+	type
+)
+VALUES
+('Garbanzo', 'terrier'),
+('BMO', 'collie'),
+('Franky', 'tabby'),
+('Fuzzy', 'hamster'),
+('Goose', 'herding mix')
 ;
