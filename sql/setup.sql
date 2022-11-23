@@ -4,6 +4,7 @@ DROP TABLE IF EXISTS colors;
 DROP TABLE IF EXISTS sharks;
 DROP TABLE IF EXISTS cities;
 DROP TABLE IF EXISTS pets;
+DROP TABLE IF EXISTS parks;
 
 CREATE TABLE colors (
 	id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -27,6 +28,13 @@ CREATE TABLE pets (
 	id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
 	name VARCHAR,
 	type VARCHAR
+);
+
+CREATE TABLE parks (
+	id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+	name VARCHAR,
+	state VARCHAR,
+	national_park BOOLEAN
 );
 
 INSERT INTO colors (
@@ -80,4 +88,17 @@ VALUES
 ('Franky', 'tabby'),
 ('Fuzzy', 'hamster'),
 ('Goose', 'herding mix')
+;
+
+INSERT INTO parks (
+	name,
+	state,
+	national_park
+)
+VALUES 
+('Glacier', 'Montana', true),
+('Forest Park', 'Oregon', false),
+('Yosemite', 'California', true),
+('Grand Staircase-Escalante', 'Utah', true),
+('Arches', 'Utah', true)
 ;
