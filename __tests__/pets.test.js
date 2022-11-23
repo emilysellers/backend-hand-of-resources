@@ -22,10 +22,20 @@ describe('pets routes', () => {
     });
   });
 
+  it('GET /pets/:id should return one pet', async () => {
+    const resp = await request(app).get('/pets/2');
+    expect(resp.status).toEqual(200);
+    expect(resp.body).toEqual({
+      id: '2',
+      name: 'BMO',
+      type: 'collie',
+    });
+  });
+
   it('GET /pets should return all pets', async () => {
-    const res = await request(app).get('/pets');
-    expect(res.status).toEqual(200);
-    expect(res.body[0]).toEqual({
+    const resp = await request(app).get('/pets');
+    expect(resp.status).toEqual(200);
+    expect(resp.body[0]).toEqual({
       id: '1',
       name: 'Garbanzo',
       type: 'terrier',
