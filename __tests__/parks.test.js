@@ -46,6 +46,20 @@ describe('parks routes', () => {
       nationalPark: true,
     });
   });
+
+  it('PUT /parks/:id should update one existing park', async () => {
+    const resp = await request(app)
+      .put('/parks/2')
+      .send({ name: 'Kenton Park' });
+    expect(resp.status).toEqual(200);
+    expect(resp.body).toEqual({
+      id: '2',
+      name: 'Kenton Park',
+      state: 'Oregon',
+      nationalPark: false,
+    });
+  });
+
   afterAll(() => {
     pool.end();
   });
