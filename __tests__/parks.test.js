@@ -25,6 +25,16 @@ describe('parks routes', () => {
     });
   });
 
+  it('GET /parks should return all parks', async () => {
+    const resp = await request(app).get('/parks');
+    expect(resp.status).toEqual(200);
+    expect(resp.body[0]).toEqual({
+      id: '1',
+      name: 'Glacier',
+      state: 'Montana',
+      nationalPark: true,
+    });
+  });
   afterAll(() => {
     pool.end();
   });
