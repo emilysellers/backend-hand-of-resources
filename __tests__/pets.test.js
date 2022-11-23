@@ -42,6 +42,13 @@ describe('pets routes', () => {
     });
   });
 
+  it('DELETE /pets/:id should delete one existing pet', async () => {
+    const resp = await request(app).delete('/pets/3');
+    expect(resp.status).toEqual(200);
+    const newResp = await request(app).get('/pets/3');
+    expect(newResp.status).toBe(404);
+  });
+
   it('PUT /pets/:id should update one existing pet', async () => {
     const resp = await request(app).put('/pets/4').send({ name: 'Dragon' });
     expect(resp.status).toEqual(200);
