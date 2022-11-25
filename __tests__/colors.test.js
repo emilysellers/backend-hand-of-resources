@@ -61,7 +61,6 @@ describe.skip('colors routes', () => {
       colorName: 'amber',
       hexColor: '#000000',
     });
-    // expect(resp.body.colorName).toBe('amber');
   });
 
   afterAll(() => {

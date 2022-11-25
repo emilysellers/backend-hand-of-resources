@@ -47,6 +47,13 @@ describe('parks routes', () => {
     });
   });
 
+  it('DELETE /parks/:id should delete one existing park', async () => {
+    const resp = await request(app).delete('/parks/5');
+    expect(resp.status).toBe(200);
+    const newResp = await request(app).get('/parks/5');
+    expect(newResp.status).toBe(404);
+  });
+
   it('PUT /parks/:id should update one existing park', async () => {
     const resp = await request(app)
       .put('/parks/2')
