@@ -3,7 +3,7 @@ const setup = require('../data/setup');
 const request = require('supertest');
 const app = require('../lib/app');
 
-describe.skip('sharks routes', () => {
+describe('sharks routes', () => {
   beforeEach(() => {
     return setup(pool);
   });
@@ -46,7 +46,7 @@ describe.skip('sharks routes', () => {
     });
   });
 
-  it.only('DELETE /sharks/:id should delete one existing shark', async () => {
+  it('DELETE /sharks/:id should delete one existing shark', async () => {
     const resp = await request(app).delete('/sharks/2');
     expect(resp.status).toEqual(200);
     const sharkResp = await request(app).get('/sharks/2');
